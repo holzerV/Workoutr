@@ -1,18 +1,19 @@
 package com.example.workoutr.Model
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
 interface WorkoutDao {
     @Insert
-    fun insert(workout: Workout)
+    suspend fun insert(workout: Workout)
 
     @Update
-    fun update(workout: Workout)
+    suspend fun update(workout: Workout)
 
     @Delete
-    fun delete(workout: Workout)
+    suspend fun delete(workout: Workout)
 
     @Query("SELECT * FROM workout_table ORDER BY id")
-    fun getAllWorkouts()
+    fun getAllWorkouts(): LiveData<List<Workout>>
 }
